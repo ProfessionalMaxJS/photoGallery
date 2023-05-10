@@ -53,8 +53,8 @@ function App() {
   
   return(
     <>
+        {bigPictureID > 0 && <BigPhotoBox image={photoArray.find(ph=>ph.id === bigPictureID)} />}
       <div style={{justifyContent: "center"}}>
-      {bigPictureID && <BigPhotoBox image={photoArray.find(ph=>ph.id === bigPictureID)} />}
         {photoArray.map(ph => <PhotoBox key={ph.id} image={ph} setBigPictureID={setBigPictureID} />)}
       </div>
       <div>
