@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import { createClient } from 'pexels'
 import { pexelsApiKey } from './apiKeys';
 import PhotoBox from './PhotoBox';
+import BigPhotoBox from './BigPhotoBox';
 
 function App() {
 
@@ -11,6 +12,7 @@ function App() {
   const [nextPageAvail, setNextPageAvail] = useState(false)
   const [searchTerm, setSearchTerm] = useState("")
   const [query, setQuery] = useState("")
+  const [bigPictureID, setBigPictureID] = useState(0)
 
   const client = createClient(pexelsApiKey)
   useEffect(() => {
@@ -48,22 +50,25 @@ function App() {
     setSearchTerm("")
     setPageNum(Math.floor(Math.random()*800))
   }
-
   
   return(
     <>
-      {photoArray.map(ph => <PhotoBox key={ph.id} image={ph} />)}
+      <div style={{justifyContent: "center"}}>
+      {bigPictureID && <BigPhotoBox image={photoArray.find(ph=>ph.id === bigPictureID)} />}
+        {photoArray.map(ph => <PhotoBox key={ph.id} image={ph} setBigPictureID={setBigPictureID} />)}
+      </div>
       <div>
-      {pageNum > 1 && <button onClick={prevPage}>Previous Photo Set</button>}
-      {nextPageAvail && <button onClick={nextPage}>Next Photo Set</button>}
-      <form onSubmit={handleSubmit}>
-      <input placeholder='elloGuvnah!' value={searchTerm} onChange={handleSearch} />
-      <button disabled={searchTerm ? false : true}>SUBMIT!</button>
-      </form>
-      <button onClick={handleRandos} >Randos, please</button>
+        {pageNum > 1 && <button onClick={prevPage}>Previous Photo Set</button>}
+        {nextPageAvail && <button onClick={nextPage}>Next Photo Set</button>}
+        <form onSubmit={handleSubmit}>
+          <input placeholder='elloGuvnah!' value={searchTerm} onChange={handleSearch} />
+          <button disabled={searchTerm ? false : true}>SUBMIT!</button>
+        </form>
+        <button onClick={handleRandos} >Randos, please</button>
       </div>
     </>
   )
 }
 
 export default App;
+//onClick={(ph.id) => handleBigPicture}
