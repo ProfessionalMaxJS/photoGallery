@@ -8,13 +8,23 @@ function App() {
 
   const [photoArray, setPhotoArray] = useState([])
   const [pageNum, setPageNum] = useState(1)
+  const [nextPageAvail, setNextPageAvail] = useState(false)
+  const [query, setQuery] = useState("")
   const client = createClient(pexelsApiKey)
   useEffect(() => {
-    // const query = 'food'
-    client.photos.curated({ per_page: 10, page: pageNum }).then(photos => {
+    query ? 
+    client.photos.search({ query, page: pageNum, per_page: 10 }).then(photos => {
+      photos.next_page ? setNextPageAvail(true) : setNextPageAvail(false)
+      photos.photos.map(pA => setPhotoArray([...photos.photos]))
+      console.log(query)
       console.log(photos)
-      setPhotoArray([...photos.photos])
-    }) //photos.map(pA => setPhotoArray([...photoArray, photoArray.push(pA)])))
+      })
+    : 
+      client.photos.curated({ per_page: 10, page: pageNum }).then(photos => {
+        photos.next_page ? setNextPageAvail(true) : setNextPageAvail(false)
+        setPhotoArray([...photos.photos])
+        console.log(photos)
+      }) 
   }, [pageNum]);
     
   const nextPage = () => {
@@ -23,7 +33,14 @@ function App() {
   const prevPage = () => {
     setPageNum(pageNum => pageNum-1)
   }
-
+  const handleSearch = (e) => {
+    setQuery(e.target.value)
+  }
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    setPageNum(pageNum => pageNum=800)
+    // setQuery("")
+  }
 
   
   return(
@@ -31,8 +48,11 @@ function App() {
       {photoArray.map(ph => <PhotoBox key={ph.id} image={ph} />)}
       <div>
       {pageNum > 1 && <button onClick={prevPage}>Previous 10 Photos</button>}
-      <button onClick={nextPage}>Next 10 Photos</button>
-      <input placeholder='elloGuvnah!'></input>
+      {nextPageAvail && <button onClick={nextPage}>Next 10 Photos</button>}
+      <form onSubmit={handleSubmit}>
+      <input placeholder='elloGuvnah!' value={query} onChange={handleSearch} />
+      <button disabled={query ? false : true}>SUBMIT!</button>
+      </form >
       </div>
     </>
   )
