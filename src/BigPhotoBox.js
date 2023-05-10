@@ -3,7 +3,7 @@ function BigPhotoBox({image}){
 
     return(
         <>
-        <img src={image.src.large} alt={image.alt || image.photographer}></img>
+        <img src={image.src.large} alt={`${image.alt} by ${image.photographer}`}></img>
         </>
     )
 }
