@@ -9,7 +9,9 @@ function App() {
   const [photoArray, setPhotoArray] = useState([])
   const [pageNum, setPageNum] = useState(1)
   const [nextPageAvail, setNextPageAvail] = useState(false)
+  const [searchTerm, setSearchTerm] = useState("")
   const [query, setQuery] = useState("")
+
   const client = createClient(pexelsApiKey)
   useEffect(() => {
     query ? 
@@ -25,7 +27,7 @@ function App() {
         setPhotoArray([...photos.photos])
         console.log(photos)
       }) 
-  }, [pageNum]);
+  }, [pageNum, query]);
     
   const nextPage = () => {
     setPageNum(pageNum => pageNum+1)
@@ -34,12 +36,13 @@ function App() {
     setPageNum(pageNum => pageNum-1)
   }
   const handleSearch = (e) => {
-    setQuery(e.target.value)
+    setSearchTerm(e.target.value)
   }
   const handleSubmit = (e) => {
     e.preventDefault()
-    setPageNum(pageNum => pageNum=800)
-    // setQuery("")
+    setPageNum(pageNum => pageNum=1)
+    setQuery(searchTerm)
+    setSearchTerm("")
   }
 
   
@@ -53,6 +56,7 @@ function App() {
       <input placeholder='elloGuvnah!' value={query} onChange={handleSearch} />
       <button disabled={query ? false : true}>SUBMIT!</button>
       </form >
+      <button  >Randos, Please</button>
       </div>
     </>
   )
