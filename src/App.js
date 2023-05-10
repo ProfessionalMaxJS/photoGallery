@@ -18,7 +18,6 @@ function App() {
     client.photos.search({ query, page: pageNum, per_page: 10 }).then(photos => {
       photos.next_page ? setNextPageAvail(true) : setNextPageAvail(false)
       photos.photos.map(pA => setPhotoArray([...photos.photos]))
-      console.log(query)
       console.log(photos)
       })
     : 
@@ -44,19 +43,24 @@ function App() {
     setQuery(searchTerm)
     setSearchTerm("")
   }
+  const handleRandos = () => {
+    setQuery("")
+    setSearchTerm("")
+    setPageNum(Math.floor(Math.random()*800))
+  }
 
   
   return(
     <>
       {photoArray.map(ph => <PhotoBox key={ph.id} image={ph} />)}
       <div>
-      {pageNum > 1 && <button onClick={prevPage}>Previous 10 Photos</button>}
-      {nextPageAvail && <button onClick={nextPage}>Next 10 Photos</button>}
+      {pageNum > 1 && <button onClick={prevPage}>Previous Photo Set</button>}
+      {nextPageAvail && <button onClick={nextPage}>Next Photo Set</button>}
       <form onSubmit={handleSubmit}>
-      <input placeholder='elloGuvnah!' value={query} onChange={handleSearch} />
-      <button disabled={query ? false : true}>SUBMIT!</button>
-      </form >
-      <button  >Randos, Please</button>
+      <input placeholder='elloGuvnah!' value={searchTerm} onChange={handleSearch} />
+      <button disabled={searchTerm ? false : true}>SUBMIT!</button>
+      </form>
+      <button onClick={handleRandos} >Randos, please</button>
       </div>
     </>
   )
