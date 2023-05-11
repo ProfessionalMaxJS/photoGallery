@@ -50,10 +50,14 @@ function App() {
     setSearchTerm("")
     setPageNum(Math.floor(Math.random()*800))
   }
+
+  const handleBigPictureID = () => {
+    return photoArray.find(ph => ph.find(ph.id === bigPictureID))
+  }
   
   return(
     <>
-        {bigPictureID > 0 && <BigPhotoBox image={photoArray.find(ph=>ph.id === bigPictureID)} />}
+        {bigPictureID > 0 && <BigPhotoBox image={handleBigPictureID} />}
       <div style={{justifyContent: "center"}}>
         {photoArray.map(ph => <PhotoBox key={ph.id} image={ph} setBigPictureID={setBigPictureID} />)}
       </div>
@@ -61,7 +65,7 @@ function App() {
         {pageNum > 1 && <button onClick={prevPage}>Previous Photo Set</button>}
         {nextPageAvail && <button onClick={nextPage}>Next Photo Set</button>}
         <form onSubmit={handleSubmit}>
-          <input placeholder='elloGuvnah!' value={searchTerm} onChange={handleSearch} />
+          <input placeholder='elloGuvnah!' value={searchTerm} onChange={handleSearch} setBigPictureID={setBigPictureID} />
           <button disabled={searchTerm ? false : true}>SUBMIT!</button>
         </form>
         <button onClick={handleRandos} >Randos, please</button>

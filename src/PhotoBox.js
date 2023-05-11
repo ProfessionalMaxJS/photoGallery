@@ -5,7 +5,7 @@ function PhotoBox({image, setBigPictureID }){
     }
 
     return(
-        <img style={{cursor: "pointer"}} onClick={handleBigPictureID}  src={image.src.small} alt={image.alt || image.photographer}></img>
+        <img style={{cursor: "pointer"}} src={image.src.small} alt={`${image.alt} by ${image.photographer}`} onClick={handleBigPictureID}></img>
     )
 }
 
