@@ -52,7 +52,7 @@ function App() {
   }
 
   const handleBigPictureID = () => {
-    return photoArray.find(ph => ph.find(ph.id === bigPictureID))
+    return bigPictureID > 0 && photoArray.find(ph => ph.find(ph.id === bigPictureID))
   }
   
   return(
