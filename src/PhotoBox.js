@@ -1,6 +1,6 @@
 function PhotoBox({image, setBigPictureID }){
     
-    const handleBigPictureID = (e) =>{
+    const handleBigPictureID = () =>{
         setBigPictureID(image.id)
     }
 

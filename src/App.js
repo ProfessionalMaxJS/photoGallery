@@ -13,6 +13,7 @@ function App() {
   const [searchTerm, setSearchTerm] = useState("")
   const [query, setQuery] = useState("")
   const [bigPictureID, setBigPictureID] = useState(0)
+  const [bigPicture, setBigPicture] = useState({})
 
   const client = createClient(pexelsApiKey)
   useEffect(() => {
@@ -51,13 +52,13 @@ function App() {
     setPageNum(Math.floor(Math.random()*800))
   }
 
-  const handleBigPictureID = () => {
-    return bigPictureID > 0 && photoArray.find(ph => ph.find(ph.id === bigPictureID))
-  }
-  
+  useEffect(()=>{
+      setBigPicture({...photoArray.find(ph => ph.id === bigPictureID)})
+  }, [bigPictureID])
+
   return(
     <>
-        {bigPictureID > 0 && <BigPhotoBox image={handleBigPictureID} />}
+        {Object.keys(bigPicture).length && <BigPhotoBox image={bigPicture} />}
       <div style={{justifyContent: "center"}}>
         {photoArray.map(ph => <PhotoBox key={ph.id} image={ph} setBigPictureID={setBigPictureID} />)}
       </div>
@@ -65,7 +66,7 @@ function App() {
         {pageNum > 1 && <button onClick={prevPage}>Previous Photo Set</button>}
         {nextPageAvail && <button onClick={nextPage}>Next Photo Set</button>}
         <form onSubmit={handleSubmit}>
-          <input placeholder='elloGuvnah!' value={searchTerm} onChange={handleSearch} setBigPictureID={setBigPictureID} />
+          <input placeholder='elloGuvnah!' value={searchTerm} onChange={handleSearch} />
           <button disabled={searchTerm ? false : true}>SUBMIT!</button>
         </form>
         <button onClick={handleRandos} >Randos, please</button>
@@ -75,4 +76,3 @@ function App() {
 }
 
 export default App;
-//onClick={(ph.id) => handleBigPicture}
