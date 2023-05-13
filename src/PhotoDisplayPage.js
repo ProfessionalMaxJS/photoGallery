@@ -19,8 +19,14 @@ function PhotoDisplayPage(props) {
   
   const client = createClient(pexelsApiKey)
   useEffect(() => {
-    qParams.get('search') && setQuery(qParams.get('search'))
-    qParams.get('page') && setPageNum(qParams.get('page'))
+
+    query ?
+      setQParams({query, pageNum})
+    :
+      setQParams({pageNum})
+
+    // qParams.get('search') && setQuery(qParams.get('search'))
+    // qParams.get('page') && setPageNum(qParams.get('page'))
     
     query ? 
       client.photos.search({ query, page: pageNum, per_page: 10 }).then(photos => {
