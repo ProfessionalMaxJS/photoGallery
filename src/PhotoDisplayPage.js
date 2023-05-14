@@ -1,8 +1,7 @@
-import './App.css';
 import { useState, useEffect } from 'react'
 import { useSearchParams } from 'react-router-dom';
 import { createClient } from 'pexels'
-// import { pexelsApiKey } from './apiKeys';
+import './CSS/PhotoDisplayPage.css'
 import PhotoBox from './PhotoBox';
 import BigPhotoBox from './BigPhotoBox';
 
@@ -68,12 +67,12 @@ function PhotoDisplayPage(props) {
   return(
     <>
         {bigPicture.hasOwnProperty('src') && <BigPhotoBox image={bigPicture} />}
-      <div style={{justifyContent: "center"}}>
+      <div className='photo-display-page' >
+        {pageNum > 1 && <button className='photo-display-page'  onClick={prevPage}> &lt; </button>}
         {photoArray.map(ph => <PhotoBox key={ph.id} image={ph} setBigPictureID={setBigPictureID} />)}
+        {nextPageAvail && <button className='photo-display-page' onClick={nextPage}> &gt; </button>}
       </div>
       <div>
-        {pageNum > 1 && <button onClick={prevPage}>Previous Photo Set</button>}
-        {nextPageAvail && <button onClick={nextPage}>Next Photo Set</button>}
         <form onSubmit={handleSubmit}>
           <input placeholder='elloGuvnah!' value={searchTerm} onChange={handleSearch} />
           <button disabled={searchTerm ? false : true}>SUBMIT!</button>

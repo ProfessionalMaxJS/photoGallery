@@ -1,0 +1,8 @@
+.photo-display-page button {
+    height: 7vh;
+    width: 7vh;
+    border-radius: 7vh;
+    font-size: 2rem;
+    font-weight: bold;
+    cursor: pointer;
+}

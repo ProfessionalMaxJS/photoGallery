@@ -1,3 +1,5 @@
+import './CSS/PhotoBox.css'
+
 function PhotoBox({image, setBigPictureID }){
     
     const handleBigPictureID = () =>{
@@ -5,7 +7,9 @@ function PhotoBox({image, setBigPictureID }){
     }
 
     return(
-        <img style={{cursor: "pointer"}} src={image.src.small} alt={`${image.alt} by ${image.photographer}`} onClick={handleBigPictureID}></img>
+        <>
+            <img className="photo-box" src={image.src.small} alt={`${image.alt} by ${image.photographer}`} onClick={handleBigPictureID}></img>
+        </>
     )
 }
 
