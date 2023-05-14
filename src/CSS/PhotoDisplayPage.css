@@ -1,8 +1,52 @@
-.photo-display-page button {
-    height: 7vh;
-    width: 7vh;
-    border-radius: 7vh;
-    font-size: 2rem;
-    font-weight: bold;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+
+.app-body {
+    margin-top: 4vh;
+}
+
+.photo-display-wheel {
+    text-align: center;
+}
+
+.photo-display-wheel button {
+    font-family: 'Poppins', sans-serif;
+    background: none;
+    height: 50px;
+    width: 50px;
+    border-radius: 50px;
+    font-size: 25px;
     cursor: pointer;
+}
+
+.photo-searchbar {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 4vh;
+    margin-left: 10vw;
+    margin-right: 10vw;
+    align-items: center;
+}
+
+.photo-searchbar form::placeholder{
+    font-weight: bold;
+}
+
+.photo-searchbar__form {
+    display: flex;
+    flex-direction: row;
+}
+
+.photo-searchbar__form input {
+    width: 50vw;
+    background: none;
+    text-align: center;
+}
+
+.photo-searchbar__form button {
+    width: 30vw;
+}
+
+.photo-searchbar__random-button {
+    width: 40vw;
 }

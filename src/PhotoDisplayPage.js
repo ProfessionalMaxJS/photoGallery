@@ -54,7 +54,7 @@ function PhotoDisplayPage(props) {
     setQuery(searchTerm)
     setSearchTerm("")
   }
-  const handleRandos = () => {
+  const handleRandomPhotos = () => {
     setQuery("")
     setSearchTerm("")
     setPageNum(Math.floor(Math.random()*800))
@@ -65,21 +65,22 @@ function PhotoDisplayPage(props) {
   }, [bigPictureID])
 
   return(
-    <>
-        {bigPicture.hasOwnProperty('src') && <BigPhotoBox image={bigPicture} />}
-      <div className='photo-display-page' >
-        {pageNum > 1 && <button className='photo-display-page'  onClick={prevPage}> &lt; </button>}
+      <div className='app-body' >
+
+      {bigPicture.hasOwnProperty('src') && <BigPhotoBox image={bigPicture} />}
+      <div className='photo-display-wheel' >
+        {pageNum > 1 && <button onClick={prevPage}> &lt; </button>}
         {photoArray.map(ph => <PhotoBox key={ph.id} image={ph} setBigPictureID={setBigPictureID} />)}
-        {nextPageAvail && <button className='photo-display-page' onClick={nextPage}> &gt; </button>}
+        {nextPageAvail && <button onClick={nextPage}> &gt; </button>}
       </div>
-      <div>
-        <form onSubmit={handleSubmit}>
-          <input placeholder='elloGuvnah!' value={searchTerm} onChange={handleSearch} />
-          <button disabled={searchTerm ? false : true}>SUBMIT!</button>
+      <div className='photo-searchbar' >
+        <form className='photo-searchbar__form' onSubmit={handleSubmit}>
+          <input type='search' placeholder='Search for Photos by Subject' value={searchTerm} onChange={handleSearch} />
+          <button disabled={searchTerm ? false : true}>Search</button>
         </form>
-        <button onClick={handleRandos} >Randos, please</button>
+        <button className='photo-searchbar__random-button' onClick={handleRandomPhotos} >Show Me Ten Random Photos!</button>
       </div>
-    </>
+      </div>
   )
 }
 

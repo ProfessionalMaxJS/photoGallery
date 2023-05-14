@@ -1,3 +1,8 @@
+.photo-box {
+    margin-left: 0.5vw;
+    margin-right: 0.5vw;
+}
+
 .photo-box:hover {
     cursor: pointer;
     opacity: 0.5;
