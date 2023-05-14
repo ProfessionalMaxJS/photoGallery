@@ -2,7 +2,7 @@ import './App.css';
 import { useState, useEffect } from 'react'
 import { useSearchParams } from 'react-router-dom';
 import { createClient } from 'pexels'
-import { pexelsApiKey } from './apiKeys';
+// import { pexelsApiKey } from './apiKeys';
 import PhotoBox from './PhotoBox';
 import BigPhotoBox from './BigPhotoBox';
 
@@ -15,32 +15,29 @@ function PhotoDisplayPage(props) {
   const [query, setQuery] = useState("")
   const [bigPictureID, setBigPictureID] = useState(0)
   const [bigPicture, setBigPicture] = useState({})
-  const [qParams, setQParams] = useSearchParams()
+  const [sParams, setSParams] = useSearchParams()
+  const pexelsApiKey = process.env.REACT_APP_API_KEY;
   const client = createClient(pexelsApiKey)
 
   useEffect(() => {
-    qParams.get('query') && setQuery(qParams.get('query')) 
-    qParams.get('pageNum') && setPageNum(Number(qParams.get('pageNum')))
+    sParams.get('query') && setQuery(sParams.get('query')) 
+    sParams.get('pageNum') && setPageNum(Number(sParams.get('pageNum')))
   }, [])
 
   useEffect(() => {
-
-    query ?
-      setQParams({query, pageNum})
-    :
-      setQParams({pageNum})
-
-    
-    query ? 
+    if(query){
+      setSParams({query, pageNum})
       client.photos.search({ query, page: pageNum, per_page: 10 }).then(photos => {
         photos.next_page ? setNextPageAvail(true) : setNextPageAvail(false)
         setPhotoArray([...photos.photos])
       })
-    : 
+    } else {
       client.photos.curated({ per_page: 10, page: pageNum }).then(photos => {
         photos.next_page ? setNextPageAvail(true) : setNextPageAvail(false)
         setPhotoArray([...photos.photos])
       })        
+      pageNum > 1 && setSParams({pageNum})
+    }
   }, [pageNum, query]);
    
   const nextPage = () => {
