@@ -1,10 +1,13 @@
 import PhotoDisplayPage from "./PhotoDisplayPage";
+import { Routes, Route } from "react-router-dom";
 
 function App() {
 
 
   return (
-    <PhotoDisplayPage />
+    <Routes>
+      <Route path="/" element={<PhotoDisplayPage />} />
+    </Routes>
   );
 }
 

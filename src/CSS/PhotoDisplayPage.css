@@ -13,14 +13,14 @@ body, html {
     border: 2px dashed;
     position: absolute;
     left: 50%;
-    transform: translateX(-50%); 
+    transform: translate(-50%, -50%); 
     animation: loading 5s linear infinite;
 }
 
 @keyframes loading {
-    0% {rotate: 0deg; color: #ff0000; }
-    50% {rotate: 180deg; color: #00ffff}
-    100% {rotate: 360deg; color: #ff0000;}
+    0% { transform: translate(-50%, -50%); rotate: 0deg; color: #ff0000; }
+    50% { transform: translate(-50%, -50%); rotate: 180deg; color: #00ffff}
+    100% { transform: translate(-50%, -50%); rotate: 360deg; color: #ff0000;}
 }
 
 .heading {
