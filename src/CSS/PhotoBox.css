@@ -1,15 +1,17 @@
 .photo-box {
-    margin-left: 0.5vw;
-    margin-right: 0.5vw;
+    margin-left: 0.75vw;
+    margin-right: 0.75vw;
+    box-shadow: 0.5vw 1vh darkslategray;
 }
 
 .photo-box:hover {
     cursor: pointer;
     opacity: 0.5;
+    box-shadow: 0.5vw 1vh black;
 }
 
 @media only screen and (max-width: 400px) {
-    .photo-box{
+    .photo-box {
         margin-top: 0.5vh;
         margin-bottom: 0.5vh;
     }

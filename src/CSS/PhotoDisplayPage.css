@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&family=Righteous&display=swap');
 
 body, html {
     height: 100%;
@@ -12,6 +12,18 @@ body, html {
 
 .heading-hidden {
     display: none;
+}
+
+.title {
+    font-family: 'Righteous', cursive;
+    text-align: center;
+    color: whitesmoke;
+    text-shadow: 0.1vw 0.1vw darkslateblue;
+}
+
+.title span {
+    font-size: 6rem;
+    text-shadow: 0.7rem 0.4rem darkslateblue;
 }
 
 .photo-display-wheel {
@@ -33,6 +45,7 @@ body, html {
         justify-content: space-between;
         align-items: center;
         overflow: auto;
+        font-family: Arial, Helvetica, sans-serif;
     }
 }
 
@@ -62,17 +75,50 @@ body, html {
 .photo-searchbar__form {
     display: flex;
     flex-direction: row;
+    margin-bottom: 0.5vh;
 }
 
 .photo-searchbar__form input {
+    box-shadow: 0 0.5vh darkslategray;
     width: 50vw;
     text-align: center;
+    border-bottom-left-radius: 1vw;
+    border-top-left-radius: 1vw;
 }
 
 .photo-searchbar__form button {
+    box-shadow: 0.3vw 0.5vh darkslategray;
+    background: darkseagreen;
     width: 30vw;
+    border-bottom-right-radius: 1vw;
+    border-top-right-radius: 1vw;
+}
+
+.photo-searchbar__form button:not(:disabled) {
+    cursor: pointer;
 }
 
 .photo-searchbar__random-button {
+    background: none;
     width: 40vw;
+    margin-top: 0.5vh;
+    border-radius: 1vw;
+    box-shadow: 0.3vw 0.5vh darkslategray;
+}
+
+.photo-searchbar__random-button:hover {
+    background: darkseagreen;
+    cursor: pointer;
+    box-shadow: 0.3vw 0.5vh black;
+}
+
+.the-credits {
+    position: relative;
+    padding-top: 2vh;
+    padding-left: 1.5vw;
+    bottom: 4vh;
+}
+
+.the-credits span {
+    text-decoration-line: underline;
 }
