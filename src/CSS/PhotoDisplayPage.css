@@ -1,8 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
 
+body, html {
+    height: 100%;
+    background: linear-gradient(#87ceeb, #ffff66);
+}
+
 .heading {
     height: 4vh;
-    background: #87ceeb;
 }
 
 .heading-hidden {
@@ -10,16 +14,17 @@
 }
 
 .photo-display-wheel {
-    position: relative;
-    background: #87ceeb;
     padding: 2vh 0 2vh 0;
     text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    overflow: auto;
 }
 
 .photo-display-wheel button {
-    position: absolute;
     font-family: 'Poppins', sans-serif;
-    background: none;
     height: 50px;
     width: 50px;
     border-radius: 50px;
@@ -48,7 +53,6 @@
 
 .photo-searchbar__form input {
     width: 50vw;
-    background: none;
     text-align: center;
 }
 
