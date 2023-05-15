@@ -14,6 +14,7 @@ function PhotoDisplayPage(props) {
   const [query, setQuery] = useState("")
   const [bigPictureID, setBigPictureID] = useState(0)
   const [bigPicture, setBigPicture] = useState({})
+  const [artistDetails, setArtistDetails] = useState("")
   const [sParams, setSParams] = useSearchParams()
   const pexelsApiKey = process.env.REACT_APP_API_KEY;
   const client = createClient(pexelsApiKey)
@@ -80,14 +81,19 @@ function PhotoDisplayPage(props) {
           <span>
             Phumble
           </span>
-        <br />~phind yourselph a photo~<br />~stay awhile~
+        <br />
+          ~phind yourselph a photo~
+          <br />~stay awhile~
         </p>
       </div>
       {bigPicture.hasOwnProperty('src') && <BigPhotoBox image={bigPicture} />}
       <div className='photo-display-wheel' >
         {pageNum > 1 && <button onClick={prevPage}> &lt; </button>}
-        {photoArray.map(ph => <PhotoBox key={ph.id} image={ph} setBigPictureID={setBigPictureID} />)}
+        {photoArray.map(ph => <PhotoBox key={ph.id} image={ph} setBigPictureID={setBigPictureID} setArtistDetails={setArtistDetails} />)}
         {nextPageAvail && <button onClick={nextPage}> &gt; </button>}
+      </div>
+      <div className='artist-plaque' >
+        {artistDetails}
       </div>
       <div className='photo-searchbar' >
         <form className='photo-searchbar__form' onSubmit={handleSubmit}>

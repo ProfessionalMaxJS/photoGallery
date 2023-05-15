@@ -58,6 +58,21 @@ body, html {
     cursor: pointer;
 }
 
+.artist-plaque {
+    height: 5rem;
+    width: 100%;
+    background: radial-gradient(white, transparent);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media only screen and (max-width: 400px) {
+    .artist-plaque{
+        display: none;
+    }
+}
+
 .photo-searchbar {
     display: flex;
     flex-direction: column;
