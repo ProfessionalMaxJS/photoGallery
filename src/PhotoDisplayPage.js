@@ -18,16 +18,16 @@ function PhotoDisplayPage(props) {
   const pexelsApiKey = process.env.REACT_APP_API_KEY;
   const client = createClient(pexelsApiKey)
 
-  //First useEffect; has an empty dependency array.
-  //Only runs once, first thing, in case the user tries to navigate to a set of results working backwards from Search Params.
+  /*First useEffect; has an empty dependency array.
+    Only runs once, first thing, in case the user tries to navigate to a set of results working backwards from Search Params.*/
   useEffect(() => {
     sParams.get('query') && setQuery(sParams.get('query')) 
     sParams.get('pageNum') && setPageNum(Number(sParams.get('pageNum')))
   }, [])
 
-  //Second useEffect, state variables pageNum and query in dependency array.
-  //Should run whenever the two state variables are updated, but (despite the warnings) should NOT be updated to include client.photos or setSParams.
-  //Both are called within and would trigger infinite re-renders.
+  /*Second useEffect, state variables pageNum and query in dependency array.
+    Should run whenever the two state variables are updated, but (despite the warnings) should NOT be updated to include client.photos or setSParams.
+    Both are called within and would trigger infinite re-renders.*/
   useEffect(() => {
     if(query){
       setSParams({query, pageNum})
@@ -65,8 +65,9 @@ function PhotoDisplayPage(props) {
     setPageNum(Math.floor(Math.random()*800))
   }
 
-  //Third useEffect, state variable bigPictureID in dependency array.
-  //Dependency Array Should not be updated to include state variable photoArray; said variable changes every time the user scrolls or searches. This setState call should ONLY run when the user selects a new photo they'd like to see enlarged, no matter where else they scroll afterward.
+  /* Third useEffect, state variable bigPictureID in dependency array.
+     Dependency Array Should not be updated to include state variable photoArray; said variable changes every time the user scrolls or searches.
+     This setState call should ONLY run when the user selects a new photo they'd like to see enlarged, no matter where else they scroll afterward.*/
   useEffect(()=>{
       setBigPicture({...photoArray.find(ph => ph.id === bigPictureID)})
   }, [bigPictureID])
@@ -98,22 +99,22 @@ function PhotoDisplayPage(props) {
       <div className='the-credits'>
         <p>
           <span >
-          The Credits <br />
+            The Credits <br />
           </span>
           Site designed & coded by&nbsp;
-          <a href="https://github.com/ProfessionalMaxJS" target="_blank" rel="noreferrer" >
-          Max Engel-Streich 
-          </a>
+            <a href="https://github.com/ProfessionalMaxJS" target="_blank" rel="noreferrer" >
+              Max Engel-Streich 
+            </a>
           <br />
           Photos provided by&nbsp;
-          <a href="https://www.pexels.com" target="_blank" rel="noreferrer">
-            Pexels
-          </a>
+            <a href="https://www.pexels.com" target="_blank" rel="noreferrer">
+              Pexels
+            </a>
           <br />
           Iconography by&nbsp; 
-          <a href="https://www.flaticon.com/free-icons/camera" target="_blank" rel="noreferrer">
-            Freepik - Flaticon
-          </a>
+            <a href="https://www.flaticon.com/free-icons/camera" target="_blank" rel="noreferrer">
+              Freepik - Flaticon
+            </a>
         </p>
       </div>
     </>
