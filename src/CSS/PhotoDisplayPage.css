@@ -10,12 +10,14 @@
 }
 
 .photo-display-wheel {
+    position: relative;
     background: #87ceeb;
-    padding-top: 2vh;
+    padding: 2vh 0 2vh 0;
     text-align: center;
 }
 
 .photo-display-wheel button {
+    position: absolute;
     font-family: 'Poppins', sans-serif;
     background: none;
     height: 50px;
