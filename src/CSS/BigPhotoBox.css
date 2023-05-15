@@ -1,5 +1,4 @@
 .big-photo-box {
-    /* background: #87ceeb; */
     padding-top: 2vh;
     text-align: center;
 }
@@ -7,4 +6,11 @@
 .big-photo-box p {
     margin-block: 0;
     margin-inline: 0;
+}
+
+@media only screen and (max-width: 400px) {
+    .big-photo-box img{
+        width: 98%;
+        height: auto;
+    }
 }
