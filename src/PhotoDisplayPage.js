@@ -65,8 +65,8 @@ function PhotoDisplayPage(props) {
   }, [bigPictureID])
 
   return(
-      <div className='app-body' >
-
+    <>
+      <div className={bigPicture.hasOwnProperty('src') ? 'heading-hidden' : 'heading'} />
       {bigPicture.hasOwnProperty('src') && <BigPhotoBox image={bigPicture} />}
       <div className='photo-display-wheel' >
         {pageNum > 1 && <button onClick={prevPage}> &lt; </button>}
@@ -80,7 +80,7 @@ function PhotoDisplayPage(props) {
         </form>
         <button className='photo-searchbar__random-button' onClick={handleRandomPhotos} >Show Me Ten Random Photos!</button>
       </div>
-      </div>
+    </>
   )
 }
 

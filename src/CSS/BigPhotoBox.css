@@ -1,5 +1,10 @@
 .big-photo-box {
-    /* margin-top: 4vh; */
+    background: #87ceeb;
+    padding-top: 2vh;
     text-align: center;
-    line-height: 0;
+}
+
+.big-photo-box p {
+    margin-block: 0;
+    margin-inline: 0;
 }
