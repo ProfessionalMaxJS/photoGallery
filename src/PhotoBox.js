@@ -7,7 +7,14 @@ function PhotoBox({image, setBigPictureID }){
     }
 
     return(
-        <img className="photo-box" src={image.src.small} alt={`${image.alt} by ${image.photographer}`} onClick={handleBigPictureID}></img>
+        <>
+            <img className="photo-box" src={image.src.small} alt={`${image.alt} by ${image.photographer}`} onClick={handleBigPictureID}></img>
+                <p className='photo-box__photo-info' >{`${image.alt} by`}&nbsp; 
+                    <a href={image.photographer_url} target="_blank" rel="noreferrer"> 
+                        {image.photographer} 
+                    </a>
+                </p>
+        </>
     )
 }
 

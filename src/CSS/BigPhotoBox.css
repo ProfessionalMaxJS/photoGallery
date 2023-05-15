@@ -12,5 +12,9 @@
     .big-photo-box img{
         width: 98%;
         height: auto;
+    }    
+
+    .big-photo-box__photo-info {
+        display: none;
     }
 }
