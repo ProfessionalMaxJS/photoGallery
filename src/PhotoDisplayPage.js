@@ -89,8 +89,14 @@ function PhotoDisplayPage(props) {
       {bigPicture.hasOwnProperty('src') && <BigPhotoBox image={bigPicture} />}
       <div className='photo-display-wheel' >
         {pageNum > 1 && <button onClick={prevPage}> &lt; </button>}
-        {photoArray.map(ph => <PhotoBox key={ph.id} image={ph} setBigPictureID={setBigPictureID} setArtistDetails={setArtistDetails} />)}
-        {nextPageAvail && <button onClick={nextPage}> &gt; </button>}
+        {
+          photoArray.length 
+          ?
+            photoArray.map(ph => <PhotoBox key={ph.id} image={ph} setBigPictureID={setBigPictureID} setArtistDetails={setArtistDetails} />)
+          :
+            <div className='loader' />
+        }
+            {nextPageAvail && <button onClick={nextPage}> &gt; </button>}
       </div>
       <div className='artist-plaque' >
         {artistDetails}

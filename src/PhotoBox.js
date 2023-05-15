@@ -7,13 +7,13 @@ function PhotoBox({image, setBigPictureID, setArtistDetails }){
         setArtistDetails("")
     }
 
-    const handleArtistDetailsSet = () =>{
+    const handleArtistDetails = () =>{
         setArtistDetails(`${image.alt} by ${image.photographer}`)
     }
 
     return(
         <>
-            <img className="photo-box" src={image.src.small} alt={`${image.alt} by ${image.photographer}`} onClick={handleBigPictureID} onMouseEnter={handleArtistDetailsSet} onMouseLeave={()=>setArtistDetails("")} />
+            <img className="photo-box" src={image.src.small} alt={`${image.alt} by ${image.photographer}`} onClick={handleBigPictureID} onMouseEnter={handleArtistDetails} onMouseLeave={()=>setArtistDetails("")} />
                 <p className='photo-box__photo-info' >{`${image.alt} by`}&nbsp; 
                     <a href={image.photographer_url} target="_blank" rel="noreferrer"> 
                         {image.photographer} 
