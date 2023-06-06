@@ -66,6 +66,12 @@ function PhotoDisplayPage(props) {
     setPageNum(Math.floor(Math.random()*800))
   }
 
+  const goHome = () => {
+    setQuery("")
+    setSearchTerm("")
+    setPageNum(0)
+  }
+
   /* Third useEffect, state variable bigPictureID in dependency array.
      Dependency Array Should not be updated to include state variable photoArray; said variable changes every time the user scrolls or searches.
      This setState call should ONLY run when the user selects a new photo they'd like to see enlarged, no matter where else they scroll afterward.*/
@@ -78,7 +84,7 @@ function PhotoDisplayPage(props) {
       <div className={bigPicture.hasOwnProperty('src') ? 'heading-hidden' : 'heading'} />
       <div className='title' >
         <p>
-          <span>
+          <span onClick={goHome}>
             Phumble
           </span>
         <br />
