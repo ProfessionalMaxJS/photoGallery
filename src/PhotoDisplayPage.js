@@ -67,8 +67,8 @@ function PhotoDisplayPage(props) {
   }
 
   const goHome = () => {
-    setQuery("")
     setSearchTerm("")
+    setQuery("")
     setPageNum(0)
   }
 
